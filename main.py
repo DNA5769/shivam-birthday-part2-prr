@@ -16,7 +16,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Shivam's Walk")
 pygame.display.set_icon(icon)
 
-p = Player()
+p = Player(HEIGHT)
 
 running = True
 while running:

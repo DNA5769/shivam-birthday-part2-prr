@@ -2,11 +2,14 @@ import os
 import pygame
 
 class Player:
-	def __init__(self):
-		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
-		
+	def __init__(self, SCREEN_HEIGHT):
+		self.WIDTH = 92
+		self.HEIGHT = 100
 		self.x = 20
-		self.y = 400
+		self.y = 3*SCREEN_HEIGHT//4 - self.HEIGHT//2
+
+		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
+		self.src = [pygame.transform.scale(img, (self.WIDTH, self.HEIGHT)) for img in self.src]
 		
 		self.ind = 0
 		self.speed = 10
