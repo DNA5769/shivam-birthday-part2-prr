@@ -5,6 +5,7 @@ WIDTH = HEIGHT = 500
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Shivam's Walk")
 
 running = True
 while running:
