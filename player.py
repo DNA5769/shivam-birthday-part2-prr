@@ -22,6 +22,4 @@ class Player:
 		self.dist += 1
 		if self.dist == self.speed:
 			self.dist = 0
-			self.ind += 1
-			if self.ind == 8:
-				self.ind = 0
+			self.ind = (self.ind+1)%8
