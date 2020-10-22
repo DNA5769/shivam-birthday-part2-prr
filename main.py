@@ -2,8 +2,11 @@ import os
 import pygame
 pygame.init()
 
-WIDTH = HEIGHT = 500
+WIDTH = 800
+HEIGHT = 450
 
+BG = pygame.image.load(os.path.join('images', 'BG.jpg'))
+BG = pygame.transform.scale(BG, (WIDTH, HEIGHT))
 icon = pygame.image.load(os.path.join('images', 'icon.png'))
 
 clock = pygame.time.Clock()
@@ -13,7 +16,7 @@ pygame.display.set_icon(icon)
 
 running = True
 while running:
-	screen.fill((0,0,0))
+	screen.blit(BG, (0,0))
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
