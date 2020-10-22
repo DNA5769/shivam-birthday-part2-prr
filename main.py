@@ -26,13 +26,13 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Shivam's Run")
 pygame.display.set_icon(icon)
 
-p = Player(HEIGHT)
+player = Player(HEIGHT)
 
 running = True
 while running:
 	screen.blit(BG, (0,0))
 
-	p.draw(screen)
+	player.draw(screen)
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -43,7 +43,7 @@ while running:
 			mixer.music.load(os.path.join('music', playlist[curr_music]))
 			mixer.music.play()
 
-	p.move()
+	player.move()
 
 	clock.tick(60)
 	pygame.display.update()
