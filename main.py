@@ -13,7 +13,7 @@ icon = pygame.image.load(os.path.join('images', 'icon.png'))
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Shivam's Walk")
+pygame.display.set_caption("Shivam's Run")
 pygame.display.set_icon(icon)
 
 p = Player(HEIGHT)
