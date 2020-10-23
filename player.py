@@ -10,15 +10,18 @@ class Player:
 		self.x = 20
 		self.y = 3*SCREEN_HEIGHT//4
 		self.jump = False
+		self.jump_ind = -1
+		self.jump_path = list(range(-2,-26,-2)) + abs(sum(list(range(-2,-26,-2))))//2*[2] + ([1] if abs(sum(list(range(-2,-26,-2))))%2!=0 else [])
+		self.jump_len = len(self.jump_path)
 
 		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
 		self.src = [pygame.transform.scale(img, (self.WIDTH, self.HEIGHT)) for img in self.src]
 		self.head = pygame.image.load(os.path.join('images', 'player_head.png'))
 		self.head = pygame.transform.scale(self.head, (self.HEAD_WIDTH, self.HEAD_HEIGHT))
 
-		self.ind = 0
+		self.ind = -1
 		self.speed = 10
-		self.dist = 0
+		self.dist = -1
 
 	def draw(self, screen):
 		screen.blit(self.src[self.ind], (self.x, self.y))
@@ -27,11 +30,19 @@ class Player:
 	def move(self, keys):
 		self.dist += 1
 		if self.dist == self.speed:
-			self.dist = 0
+			self.dist = -1
 			self.ind = (self.ind+1)%8
 
 		if keys[pygame.K_SPACE] and not self.jump:
 			self.jump = True
-			print(keys)
-			print('Working')
+
+		if self.jump:
+			self.jump_ind += 1
+
+			if self.jump_ind == self.jump_len:
+				self.jump_ind = -1
+				self.jump = False
+			else:
+				self.y += self.jump_path[self.jump_ind]
+
 
