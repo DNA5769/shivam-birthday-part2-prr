@@ -43,7 +43,8 @@ while running:
 			mixer.music.load(os.path.join('music', playlist[curr_music]))
 			mixer.music.play()
 
-	player.move()
+	keys = pygame.key.get_pressed()
+	player.move(keys)
 
 	clock.tick(60)
 	pygame.display.update()
