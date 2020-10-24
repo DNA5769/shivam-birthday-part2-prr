@@ -11,7 +11,7 @@ class Player:
 		self.y = 3*SCREEN_HEIGHT//4
 		self.jump = False
 		self.jump_ind = -1
-		self.jump_path = list(range(-2,-26,-2)) + abs(sum(list(range(-2,-26,-2))))//2*[2] + ([1] if abs(sum(list(range(-2,-26,-2))))%2!=0 else [])
+		self.jump_path = list(range(-2,-31,-2)) + abs(sum(list(range(-2,-26,-2))))//2*[2] + ([1] if abs(sum(list(range(-2,-26,-2))))%2!=0 else [])
 		self.jump_len = len(self.jump_path)
 
 		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
