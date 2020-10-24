@@ -5,6 +5,7 @@ import pygame
 pygame.init()
 
 from player import Player
+from powerup import Powerup
 
 WIDTH = 800
 HEIGHT = 450
@@ -26,12 +27,23 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Shivam's Run")
 pygame.display.set_icon(icon)
 
+spawn_time = 400
+next_spawn = 0
+
 player = Player(HEIGHT)
+powerups = []
 
 running = True
 while running:
 	screen.blit(BG, (0,0))
 
+	next_spawn += 1
+	if next_spawn == spawn_time:
+		next_spawn = 0
+		powerups.append(Powerup(WIDTH, HEIGHT))
+
+	for x in powerups:
+		x.draw(screen)
 	player.draw(screen)
 
 	for event in pygame.event.get():
@@ -45,6 +57,8 @@ while running:
 
 	keys = pygame.key.get_pressed()
 	player.move(keys)
+	for x in powerups:
+		x.move()
 
 	clock.tick(60)
 	pygame.display.update()
