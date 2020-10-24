@@ -8,7 +8,7 @@ class Powerup:
 
 		self.x = SCREEN_WIDTH + 5
 		self.y = SCREEN_HEIGHT - self.img.get_height()
-		self.speed = 1
+		self.speed = 3
 
 	def move(self):
 		self.x -= self.speed
