@@ -6,6 +6,7 @@ pygame.init()
 
 from player import Player
 from powerup import Powerup
+from enemy import Enemy
 
 WIDTH = 800
 HEIGHT = 450
@@ -40,7 +41,10 @@ while running:
 	next_spawn += 1
 	if next_spawn == spawn_time:
 		next_spawn = 0
-		items.append(Powerup(WIDTH, HEIGHT))
+		if not random.choice([0,1]):
+			items.append(Enemy(WIDTH, HEIGHT))
+		else:
+			items.append(Powerup(WIDTH, HEIGHT))
 
 	for x in items:
 		x.draw(screen)
