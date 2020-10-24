@@ -31,7 +31,7 @@ spawn_time = 300
 next_spawn = 0
 
 player = Player(HEIGHT)
-powerups = []
+items = []
 
 running = True
 while running:
@@ -40,10 +40,9 @@ while running:
 	next_spawn += 1
 	if next_spawn == spawn_time:
 		next_spawn = 0
-		powerups.append(Powerup(WIDTH, HEIGHT))
-		print(powerups)
+		items.append(Powerup(WIDTH, HEIGHT))
 
-	for x in powerups:
+	for x in items:
 		x.draw(screen)
 	player.draw(screen)
 
@@ -58,12 +57,12 @@ while running:
 
 	keys = pygame.key.get_pressed()
 	player.move(keys)
-	for x in powerups:
+	for x in items:
 		x.move()
 
-	for x in powerups:
+	for x in items:
 		if x.x + x.img.get_width() < -5:
-			powerups.remove(x)
+			items.remove(x)
 
 	clock.tick(60)
 	pygame.display.update()
