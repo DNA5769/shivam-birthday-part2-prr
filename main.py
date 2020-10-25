@@ -54,6 +54,11 @@ while running:
 	player.draw(screen)
 	screen.blit(MUSIC_TEXT, (WIDTH - MUSIC_TEXT.get_width(), 3))
 
+	for x in items:
+		player_col_pos = (player.x+player.WIDTH/2, player.y+player.HEIGHT)
+		if player_col_pos[0] >= x.x and player_col_pos[0] <= x.x+x.WIDTH and player_col_pos[1] >= x.y and player_col_pos[1] <= x.y+x.HEIGHT:
+			print('COLLISION AFFF')
+
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			running = False
