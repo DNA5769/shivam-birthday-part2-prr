@@ -38,7 +38,7 @@ icon = pygame.image.load(os.path.join('images', 'icon.png'))
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption(f"Shivam's Run | Highscore: {highscore}")
+pygame.display.set_caption(f"Shivam's Run | Highscore: {highscore}km")
 pygame.display.set_icon(icon)
 
 spawn_time = 300
