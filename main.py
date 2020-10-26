@@ -1,3 +1,5 @@
+from pypresence import Presence
+import time
 import os
 import sys
 import random
@@ -39,6 +41,10 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_icon(icon)
 
+start = time.time()
+RPC = Presence('770322716360048730')
+RPC.connect()
+
 running = True
 while running:
 	if 'highscore.pickle' not in os.listdir():
@@ -60,6 +66,7 @@ while running:
 	game_over = False
 	game_over_update = False
 	while not game_over:
+		RPC.update(details=f'Score: {score}km', state=f'Highscore: {highscore}km', large_image='large', large_text='How Unsend Works', small_image='smol', small_text='Bhaag D.K Bose', start=start)
 		screen.blit(BG, (0,0))
 		game_over = game_over_update
 
@@ -99,6 +106,7 @@ while running:
 						pickle.dump(score, f)
 				game_over = True
 				running = False
+				RPC.close()
 			elif event.type == MUSIC_END:
 				curr_music = (curr_music+1)%len(playlist)
 
