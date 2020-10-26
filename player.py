@@ -15,6 +15,7 @@ class Player:
 		self.jump_len = len(self.jump_path)
 		self.health = self.max_health = 100
 		self.health_decay = 20
+		self.score_mult = 30
 
 
 		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
