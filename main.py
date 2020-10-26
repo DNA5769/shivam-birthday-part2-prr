@@ -1,8 +1,9 @@
 import os
+import sys
 import random
 from pygame import mixer
-import pygame
 import pickle
+import pygame
 pygame.init()
 
 from player import Player
@@ -11,6 +12,12 @@ from enemy import Enemy
 
 WIDTH = 800
 HEIGHT = 450
+
+if 'highscore.pickle' not in os.listdir():
+	with open('highscore.pickle', 'wb') as f:
+		pickle.dump(0, f)
+with open('highscore.pickle', 'rb') as f:
+	highscore = pickle.load(f)
 
 CS_FONT = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 25)
 
@@ -31,7 +38,7 @@ icon = pygame.image.load(os.path.join('images', 'icon.png'))
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Shivam's Run")
+pygame.display.set_caption(f"Shivam's Run | Highscore: {highscore}")
 pygame.display.set_icon(icon)
 
 spawn_time = 300
@@ -78,6 +85,9 @@ while running:
 
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
+			if score > highscore:
+				with open('highscore.pickle', 'wb') as f:
+					pickle.dump(score, f)
 			running = False
 		elif event.type == MUSIC_END:
 			curr_music = (curr_music+1)%len(playlist)
@@ -103,5 +113,11 @@ while running:
 	if score_counter == player.score_mult:
 		score_counter = -1
 		score += 1
+
+	if player.health == 0:
+		if score > highscore:
+			with open('highscore.pickle', 'wb') as f:
+				pickle.dump(score, f)
+		running = False
 	clock.tick(60)
 	pygame.display.update()
