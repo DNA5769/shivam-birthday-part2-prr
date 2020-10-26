@@ -13,6 +13,7 @@ HEIGHT = 450
 
 CS_FONT = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 25)
 
+collect_sound = pygame.mixer.Sound(os.path.join('sounds', 'collect.wav'))
 MUSIC_END = pygame.USEREVENT + 0
 playlist = os.listdir('music')
 random.shuffle(playlist)
@@ -65,6 +66,7 @@ while running:
 	for x in items:
 		player_col_pos = (player.x+player.WIDTH/2, player.y+player.HEIGHT)
 		if player_col_pos[0] >= x.x and player_col_pos[0] <= x.x+x.WIDTH and player_col_pos[1] >= x.y and player_col_pos[1] <= x.y+x.HEIGHT:
+			pygame.mixer.Sound.play(collect_sound)
 			if isinstance(x, Powerup):
 				player.health = min(player.max_health, player.health+10)
 			else:
