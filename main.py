@@ -35,6 +35,7 @@ spawn_time = 300
 next_spawn = 0
 
 player = Player(HEIGHT)
+health_decay_counter = -1
 items = []
 
 running = True
@@ -52,7 +53,10 @@ while running:
 	for x in items:
 		x.draw(screen)
 	player.draw(screen)
-	screen.blit(MUSIC_TEXT, (WIDTH - MUSIC_TEXT.get_width(), 3))
+	screen.blit(MUSIC_TEXT, (WIDTH/2 - MUSIC_TEXT.get_width()/2, 3))
+	HEALTH_TEXT = CS_FONT.render(f'Health: {player.health}/{player.max_health}', False, (255,0,0))
+	screen.blit(HEALTH_TEXT, (1, 35))
+	pygame.draw.rect(screen, (255,0,0), (HEALTH_TEXT.get_width()+3, 35, player.health*2,HEALTH_TEXT.get_height()), False)
 
 	for x in items:
 		player_col_pos = (player.x+player.WIDTH/2, player.y+player.HEIGHT)
@@ -78,5 +82,9 @@ while running:
 		if x.x + x.img.get_width() < -5:
 			items.remove(x)
 
+	health_decay_counter += 1
+	if health_decay_counter == player.health_decay:
+		health_decay_counter = -1
+		player.health = max(0, player.health-1)
 	clock.tick(60)
 	pygame.display.update()

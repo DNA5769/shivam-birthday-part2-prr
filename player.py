@@ -13,6 +13,9 @@ class Player:
 		self.jump_ind = -1
 		self.jump_path = list(range(-2,-31,-2)) + abs(sum(list(range(-2,-31,-2))))//2*[2] + ([1] if abs(sum(list(range(-2,-31,-2))))%2!=0 else [])
 		self.jump_len = len(self.jump_path)
+		self.health = self.max_health = 100
+		self.health_decay = 20
+
 
 		self.src = [pygame.image.load(os.path.join('images', 'sprites', f'walk{i}.png')) for i in range(8)]
 		self.src = [pygame.transform.scale(img, (self.WIDTH, self.HEIGHT)) for img in self.src]
