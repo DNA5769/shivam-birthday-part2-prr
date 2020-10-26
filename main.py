@@ -19,6 +19,8 @@ CS_FONT_BIG = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 100)
 
 collect_sound = pygame.mixer.Sound(os.path.join('sounds', 'collect.wav'))
 hit_sound = pygame.mixer.Sound(os.path.join('sounds', 'hit.wav'))
+gameover_sound = pygame.mixer.Sound(os.path.join('sounds', 'gameover.wav'))
+highscore_sound = pygame.mixer.Sound(os.path.join('sounds', 'highscore.wav'))
 
 MUSIC_END = pygame.USEREVENT + 0
 playlist = os.listdir('music')
@@ -132,9 +134,11 @@ while running:
 			if score <= highscore:
 				GAME_OVER_TEXT = CS_FONT_BIG.render('Game Over', False, (255,0,0))
 				screen.blit(GAME_OVER_TEXT, (WIDTH//2-GAME_OVER_TEXT.get_width()//2, HEIGHT//2-GAME_OVER_TEXT.get_height()//2))
+				pygame.mixer.Sound.play(gameover_sound)
 			else:
 				HIGH_SCORE_TEXT = CS_FONT_AVG.render(f'New Highscore: {score}km', False, (255,0,0))
 				screen.blit(HIGH_SCORE_TEXT, (WIDTH//2-HIGH_SCORE_TEXT.get_width()//2, HEIGHT//2-HIGH_SCORE_TEXT.get_height()//2))
+				pygame.mixer.Sound.play(highscore_sound)
 
 		clock.tick(60)
 		pygame.display.update()
