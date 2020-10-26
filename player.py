@@ -14,7 +14,7 @@ class Player:
 		self.jump_path = list(range(-2,-31,-2)) + abs(sum(list(range(-2,-31,-2))))//2*[2] + ([1] if abs(sum(list(range(-2,-31,-2))))%2!=0 else [])
 		self.jump_len = len(self.jump_path)
 		self.health = self.max_health = 100
-		self.health_decay = 20
+		self.health_decay = 50
 		self.score_mult = 30
 
 
