@@ -14,6 +14,7 @@ WIDTH = 800
 HEIGHT = 450
 
 CS_FONT = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 25)
+CS_FONT_AVG = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 64)
 CS_FONT_BIG = pygame.font.Font(os.path.join('fonts', 'cs.ttf'), 100)
 
 collect_sound = pygame.mixer.Sound(os.path.join('sounds', 'collect.wav'))
@@ -128,8 +129,12 @@ while running:
 			game_over_update = True
 
 		if game_over and game_over_update:
-			GAME_OVER_TEXT = CS_FONT_BIG.render('Game Over', False, (255,0,0))
-			screen.blit(GAME_OVER_TEXT, (WIDTH//2-GAME_OVER_TEXT.get_width()//2, HEIGHT//2-GAME_OVER_TEXT.get_height()//2))
+			if score <= highscore:
+				GAME_OVER_TEXT = CS_FONT_BIG.render('Game Over', False, (255,0,0))
+				screen.blit(GAME_OVER_TEXT, (WIDTH//2-GAME_OVER_TEXT.get_width()//2, HEIGHT//2-GAME_OVER_TEXT.get_height()//2))
+			else:
+				HIGH_SCORE_TEXT = CS_FONT_AVG.render(f'New Highscore: {score}km', False, (255,0,0))
+				screen.blit(HIGH_SCORE_TEXT, (WIDTH//2-HIGH_SCORE_TEXT.get_width()//2, HEIGHT//2-HIGH_SCORE_TEXT.get_height()//2))
 
 		clock.tick(60)
 		pygame.display.update()
