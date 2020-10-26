@@ -66,9 +66,9 @@ while running:
 		player_col_pos = (player.x+player.WIDTH/2, player.y+player.HEIGHT)
 		if player_col_pos[0] >= x.x and player_col_pos[0] <= x.x+x.WIDTH and player_col_pos[1] >= x.y and player_col_pos[1] <= x.y+x.HEIGHT:
 			if isinstance(x, Powerup):
-				print('Powerup')
+				player.health = min(player.max_health, player.health+10)
 			else:
-				print('Enemy')
+				player.health = max(0, player.health-10)
 			items.remove(x)
 
 	for event in pygame.event.get():
