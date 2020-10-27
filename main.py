@@ -3,7 +3,6 @@ import time
 import os
 import sys
 import random
-from pygame import mixer
 import pickle
 import pygame
 pygame.init()
@@ -28,9 +27,9 @@ MUSIC_END = pygame.USEREVENT + 0
 playlist = os.listdir('music')
 random.shuffle(playlist)
 curr_music = 0
-mixer.music.load(os.path.join('music', playlist[curr_music]))
-mixer.music.play()
-mixer.music.set_endevent(MUSIC_END)
+pygame.mixer.music.load(os.path.join('music', playlist[curr_music]))
+pygame.mixer.music.play()
+pygame.mixer.music.set_endevent(MUSIC_END)
 MUSIC_TEXT = CS_FONT.render('Now Playing - ' + playlist[curr_music][:-4], False, (255,255,0))
 
 BG = pygame.image.load(os.path.join('images', 'BG.jpg'))
@@ -110,9 +109,9 @@ while running:
 			elif event.type == MUSIC_END:
 				curr_music = (curr_music+1)%len(playlist)
 
-				mixer.music.load(os.path.join('music', playlist[curr_music]))
+				pygame.mixer.music.load(os.path.join('music', playlist[curr_music]))
 				MUSIC_TEXT = CS_FONT.render('Now Playing - ' + playlist[curr_music][:-4], False, (255,255,0))
-				mixer.music.play()
+				pygame.mixer.music.play()
 
 		keys = pygame.key.get_pressed()
 		player.move(keys)
